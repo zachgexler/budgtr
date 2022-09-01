@@ -26,39 +26,39 @@ app.use(express.static('public'))
 
 // INDEX-route
 app.get('/budgets/', (req, res) => {
-    // renders Index-JSX template
+    res.send("Adult Life")
         // send this.props
-    res.render("budgtr_index.ejs", {
-        allBudgets: budgets
+    // res.render("budgtr_index.ejs", {
+        // allBudgets: budgets
     })
-})
+// })
 
-// NEW route 
-app.get('/budgets/new', (req, res) => {
-    // displays HTML form to user
-    res.render('new.ejs')
-})
+// // NEW route 
+// app.get('/budgets/new', (req, res) => {
+//     // displays HTML form to user
+//     res.render('new.ejs')
+// })
 
-// CREATE/POST-route
-app.post("/budgets", (req, res) => {
-    // push the data
-    budgetData.push(req.body)
-    // redirect to Index.jsx
-    res.redirect("/budgets")
-})
+// // CREATE/POST-route
+// app.post("/budgets", (req, res) => {
+//     // push the data
+//     budgetData.push(req.body)
+//     // redirect to Index.jsx
+//     res.redirect("/budgets")
+// })
 
-// SHOW-route single resource
-app.get("/budgets/:indexOfBudgetsArray", (req, res) => {
-    // pass this.props 
-    res.render("show.ejs", {
-        // show single budget
-        budget: budgetData[req.params.indexOfBudgetsArray]
-    })
-})
+// // SHOW-route single resource
+// app.get("/budgets/:indexOfBudgetsArray", (req, res) => {
+//     // pass this.props 
+//     res.render("show.ejs", {
+//         // show single budget
+//         budget: budgetData[req.params.indexOfBudgetsArray]
+//     })
+// })
 
-// =======================================
-//              LISTENER
-// =======================================
+// // =======================================
+// //              LISTENER
+// // =======================================
 app.listen(PORT, () => {
     console.log("listening...")
 })
