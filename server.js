@@ -1,64 +1,36 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
-const budgetData = require('./models/budget.js');
+const port = 3000;
+const budgets = require("./models/budget.js");
 
-// =====================================
-//              MIDDLEWARE 
-// =====================================
-// View Engine
-// app.set("view engine", "jsx")
-// app.engine("jsx", viewEngine())
 
-// uses bodyParser to get req.body
-app.use(express.urlencoded({extended: false}))
-// static-assets folder 
-app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
 
-// =======================================
-//              DATABASE
-// =======================================
+app.get("/budgets", (req, res) => {
+    res.render("index.ejs", {
+        allBudgets: budgets
+    });
+});
 
-// =======================================
-//              ROUTES
-// =======================================
-// order of INDUCES important 
+app.get("/budgets/new", (req, res) => {
+    res.render("new.ejs")
+});
 
-// INDEX-route
-app.get('/budgets/', (req, res) => {
-    res.send("Adult Life")
-        // send this.props
-    // res.render("budgtr_index.ejs", {
-        // allBudgets: budgets
-    })
-// })
+app.post("/budgets", (req, res) => {
+    budgets.push(req.body)
+    res.redirect("/budgets")
+});
 
-// // NEW route 
-// app.get('/budgets/new', (req, res) => {
-//     // displays HTML form to user
-//     res.render('new.ejs')
-// })
+app.get("/budgets/:index", (req, res) => {
+    res.render("show.ejs", {
+        allBudgets: budgets[req.params.index]
+    });
+});
 
-// // CREATE/POST-route
-// app.post("/budgets", (req, res) => {
-//     // push the data
-//     budgetData.push(req.body)
-//     // redirect to Index.jsx
-//     res.redirect("/budgets")
-// })
+app.get("/", (req, res) => {
+    res.send("Welcome to the Budgtr App!");
+});
 
-// // SHOW-route single resource
-// app.get("/budgets/:indexOfBudgetsArray", (req, res) => {
-//     // pass this.props 
-//     res.render("show.ejs", {
-//         // show single budget
-//         budget: budgetData[req.params.indexOfBudgetsArray]
-//     })
-// })
-
-// // =======================================
-// //              LISTENER
-// // =======================================
-app.listen(PORT, () => {
-    console.log("listening...")
-})
+app.listen(port, () => {
+    console.log("Express is listening")
+});

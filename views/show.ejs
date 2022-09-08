@@ -1,10 +1,37 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Budgtr</title>
-  </head>
-  <body>
-    <a href="/budget">See Budget</a> 
-  </body>
-</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <title>Document</title>
+</head>
+
+<body>
+ 
+       <div class="container">
+        <button><a href="/budgets/new">New Item</a></button>
+       
+        <table>
+            <tr>    
+                    <td>
+                        <%=allBudgets.date %>
+                    </td>
+                    <td> 
+                            <%=allBudgets.name %>
+                            </td>
+                            <td>
+                                <%=allBudgets.from %>
+                        </td>
+                    <td>
+                        <%=allBudgets.amount %>
+                    </td>                
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
